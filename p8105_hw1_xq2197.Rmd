@@ -5,3 +5,53 @@ output: github_document
 ---
 
 This is my work for P8105 homework 1.
+
+```{r learning_assessment_1}
+library(tidyverse)
+```
+
+##Problem 1
+The chunk below creates a data frame comprised of:
+
+a random sample of size 10 from a standard Normal distribution
+a logical vector indicating whether elements of the sample are greater than 0
+a character vector of length 10
+a factor vector of length 10, with 3 different factor “levels”
+
+```{r dataframe}
+prob1_df = 
+  tibble(
+    norm_samp = rnorm(10),
+    norm_samp_pos = norm_samp > 0,
+    vec_char = c("a", "b", "c", "d","e","f","g","h","i","j"),
+    vec_factor = factor(c("low", "low", "low", "mod","mod","mod","mod","high","high","high"))
+  )
+```
+
+Take the mean of each variable in your dataframe.
+
+```{r mean}
+mean(pull(prob1_df, norm_samp))
+mean(pull(prob1_df, norm_samp_pos))
+mean(pull(prob1_df, vec_char))
+mean(pull(prob1_df, vec_factor))
+```
+
+I can only take the means of numeric and logical vectors instead of characters or factors.
+
+```{r convert_to_numeric}
+as.numeric(pull(prob1_df, norm_samp))
+as.numeric(pull(prob1_df, norm_samp_pos))
+as.numeric(pull(prob1_df, vec_char))
+as.numeric(pull(prob1_df, vec_factor))
+eval = FALSE
+```
+
+Logical variables can be converted to numbers but characters cannot, so we can take the means of logical variables rather than of characters. However, we can still convert factors to numbers if we insist, but this does not make much sense.
+
+```{r multiply}
+as.numeric(pull(prob1_df, norm_samp_pos)) * pull(prob1_df, norm_samp)
+as.factor(pull(prob1_df, norm_samp_pos)) * pull(prob1_df, norm_samp)
+as.numeric(as.factor(pull(prob1_df, norm_samp_pos))) * pull(prob1_df, norm_samp)
+```
+##Problem 2
