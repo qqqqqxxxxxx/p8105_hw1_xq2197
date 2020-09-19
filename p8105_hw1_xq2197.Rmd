@@ -1,0 +1,7 @@
+---
+title: "Homework 1"
+author: "Clare Qian"
+output: github_document
+---
+
+This is my work for P8105 homework 1.
